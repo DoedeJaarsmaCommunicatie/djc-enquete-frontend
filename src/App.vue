@@ -4,7 +4,6 @@
       <section v-if="!started" key="button">
         <button class="btn primary" @click="started = true">Beginnen</button>
       </section>
-
       <section v-else key="questionnaire">
         <Questionnaire/>
       </section>

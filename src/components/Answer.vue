@@ -1,9 +1,9 @@
 <template>
-  <article class="answer">
+  <button class="answer" @click="$emit('click')">
     <img :src="answer.image? answer.image : 'https://picsum.photos/800'" :alt="answer.name" class="answer-image" />
 
     <h2 class="answer-title">{{answer.name}}</h2>
-  </article>
+  </button>
 </template>
 
 <script>
