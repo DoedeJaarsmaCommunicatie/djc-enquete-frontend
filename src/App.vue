@@ -1,28 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <transition-group>
+      <section v-if="!started" key="button">
+        <button class="btn primary" @click="started = true">Beginnen</button>
+      </section>
+
+      <section v-else key="questionnaire">
+        <Questionnaire/>
+      </section>
+    </transition-group>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Questionnaire from '@/views/Questionnaire'
 export default {
   name: 'app',
-  components: {
-    HelloWorld
-  }
+  components: { Questionnaire },
+  data: () => ({
+    started: false
+  })
 }
 </script>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="scss" src="./assets/tailwind.scss" />
