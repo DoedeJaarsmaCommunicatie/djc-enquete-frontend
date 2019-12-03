@@ -1,11 +1,25 @@
 <template>
   <section class="question">
-    <Answer :answer="{ name: 'Complex' }" @click="alertWindow" />
+    <header class="question-header">
+      {{ question.name }}
+    </header>
+    <section class="answers" v-if="quest">
+      <Answer
+        v-for="answer in quest.options"
+        :key="answer.id"
+        :answer="answer"
+        @click="answerChosen(answer)"
+        :chosen="answer.id === chosen"
+      />
+    </section>
   </section>
 </template>
 
 <script>
 import Answer from '@/components/Answer'
+import { baseUri } from '@/config'
+import ky from 'ky'
+
 export default {
   name: 'Question',
   components: { Answer },
@@ -16,10 +30,65 @@ export default {
       required: true
     }
   },
+  data: () => ({
+    quest: () => ({}),
+    chosen: false
+  }),
   methods: {
-    alertWindow () {
-      window.alert('test')
+    async fetchQuestion () {
+      this.quest = await ky.get(`${baseUri}/questions/${this.question.id}`).json()
+    },
+    async answerChosen (answer) {
+      if (this.$store.state.user) {
+        const id = this.$store.state.user.uuid
+        answer = await ky.post(`${baseUri}/answer/${id}/${this.question.id}`, { json: { answer: answer.id } })
+        this.$emit('picked', { answer, question: this.quest })
+      }
+    },
+    async choiceFetch () {
+      if (this.$store.state) {
+        const id = this.$store.state.user.uuid
+        const chosen = await ky.get(`${baseUri}/answer/${id}/${this.question.id}`).json()
+        this.chosen = chosen.option_id
+      }
     }
+  },
+  mounted () {
+    this.fetchQuestion()
+    this.choiceFetch()
   }
 }
 </script>
+
+<style lang="scss">
+  .question {
+    height: 100%;
+
+    @media screen and (max-width: 768px) {
+      overflow: scroll;
+    }
+  }
+
+  .question-header {
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .answers {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: 768px) {
+    .answers {
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      flex-direction: row;
+    }
+    .answer:not(:last-of-type) {
+      margin-right: 1.5rem;
+    }
+  }
+</style>

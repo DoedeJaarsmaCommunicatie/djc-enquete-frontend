@@ -1,0 +1,29 @@
+@use 'buttons'
+
+.form
+  height: 100%
+  padding-top: 5rem
+  @media screen and (max-width: 768px)
+    padding: 2rem
+
+.inputs
+  @media screen and (min-width: 768px)
+    display: grid
+    grid-template-columns: 1fr 1fr
+
+.form-group
+  @apply block my-4
+  position: relative
+  width: 100%
+
+.control
+  @apply block
+  @apply border-b-2 border-grey
+  @apply text-primary-500
+  @apply py-2 px-4
+  width: 80%
+
+.submit-button
+  @extend %btn
+  display: inline-block
+  margin-bottom: 1.5rem

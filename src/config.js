@@ -1,2 +1,2 @@
-export const environment = 'development'
-export const baseUri = 'https://djc-enquete.lndo.site'
+export const environment = 'production'
+export const baseUri = (environment === 'production') ? 'https://enquete.doedejaarsma.nl' : 'https://djc-enquete.lndo.site'
