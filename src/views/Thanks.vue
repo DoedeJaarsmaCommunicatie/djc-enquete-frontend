@@ -40,7 +40,9 @@ export default {
       { name: 'firstName', type: 'text', class: 'control', value: '', label: 'Voornaam' },
       { name: 'lastName', type: 'text', class: 'control', value: '', label: 'Achternaam' },
       { name: 'email', type: 'email', class: 'control email', value: '', label: 'E-mail' },
-      { name: 'address', type: 'text', class: 'control', value: '', label: 'Adres' }
+      { name: 'address', type: 'text', class: 'control', value: '', label: 'Adres' },
+      { name: 'postalCode', type: 'text', class: 'control', value: '', label: 'Postcode' },
+      { name: 'city', type: 'text', class: 'control', value: '', label: 'Plaats' }
     ],
     finished: false,
     error: false
@@ -52,6 +54,8 @@ export default {
       this.fields[1].value = user.lastName
       this.fields[2].value = user.email
       this.fields[3].value = user.address
+      this.fields[4].value = user.postalCode
+      this.fields[5].value = user.city
     }
   },
   methods: {
@@ -65,7 +69,9 @@ export default {
         firstName: this.fields[0].value,
         lastName: this.fields[1].value,
         email: this.fields[2].value,
-        address: this.fields[3].value
+        address: this.fields[3].value,
+        postalCode: this.fields[4].value,
+        city: this.fields[5].value
       }
 
       const userReq = await ky.post(`${baseUri}/user/${user.uuid}`, { json: data })
