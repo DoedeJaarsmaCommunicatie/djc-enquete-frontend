@@ -78,9 +78,10 @@ export default {
   .answers {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     .answers {
       align-items: center;
       justify-content: center;
