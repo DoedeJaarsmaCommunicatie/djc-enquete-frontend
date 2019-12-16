@@ -1,11 +1,9 @@
 <template>
   <form class="form container mx-auto" @submit.prevent="store">
-    <h2>Bedankt voor het invullen</h2>
+    <h2>Bedankt voor het invullen van je smaakprofiel</h2>
     <p>
-      Als laatste hebben wij nog wat vragen, als deze correct zijn kan je op verstuur klikken en gaan wij aan de slag.
-      Is er iets niet correct? Dan kan je jouw gegevens nog aanpassen voor het versturen.
+      Check nog even de gegevens waar we de attentie naartoe kunnen sturen. Kloppen de gegevens niet? Pas het dan gerust even aan.
     </p>
-
     <div class="inputs">
       <div class="form-group" v-for="field in fields" :key="field.name">
         <label :for="field.name" class="sr-only">{{ field.label }}</label>
@@ -19,11 +17,12 @@
         />
       </div>
     </div>
-    <input type="submit" value="Opslaan" class="submit-button">
+    <input type="submit" value="Opslaan en versturen" class="submit-button">
 
     <h2 v-if="finished">
-      Bedankt voor het invullen van de vragenlijst. hij is in goede orde ontvangen.
+      Bedankt voor het invullen van de vragen. Binnen een paar dagen ontvang je nieuwe inspiratie voor 2020!
     </h2>
+    <img :src="tyImg" alt="Bedankt voor het invullen." v-if="finished" />
     <h2 v-if="error">
       Er is een probleem, zijn alle velden goed ingevuld?
     </h2>
@@ -32,10 +31,12 @@
 
 <script>
 import ky from 'ky'
+import tyImg from '../assets/thankyou.jpg'
 import { baseUri } from '@/config'
 export default {
   name: 'Thanks',
   data: () => ({
+    tyImg,
     fields: [
       { name: 'firstName', type: 'text', class: 'control', value: '', label: 'Voornaam' },
       { name: 'lastName', type: 'text', class: 'control', value: '', label: 'Achternaam' },

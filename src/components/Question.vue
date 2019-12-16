@@ -51,9 +51,20 @@ export default {
         const chosen = await ky.get(`${baseUri}/answer/${id}/${this.question.id}`).json()
         this.chosen = chosen.option_id
       }
+    },
+    fixHeight () {
+      if (screen.width > 748) return
+
+      const questions = document.querySelectorAll('.question')
+      const header = document.querySelector('.header')
+
+      for (let i = 0; i < questions.length; i++) {
+        questions[i].style.height = `calc(100% - ${header.clientHeight})`
+      }
     }
   },
   mounted () {
+    this.fixHeight()
     this.fetchQuestion()
     this.choiceFetch()
   }
@@ -63,6 +74,7 @@ export default {
 <style lang="scss">
   .question {
     height: calc(100% - 112px);
+    margin-top: 112px;
 
     @media screen and (max-width: 768px) {
       overflow: scroll;
@@ -95,7 +107,7 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 100%;
+      margin-top: 0;
     }
 
     .question-header {
