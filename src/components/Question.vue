@@ -62,7 +62,7 @@ export default {
 
 <style lang="scss">
   .question {
-    height: 100%;
+    height: calc(100% - 112px);
 
     @media screen and (max-width: 768px) {
       overflow: scroll;
@@ -84,11 +84,22 @@ export default {
     .answers {
       align-items: center;
       justify-content: center;
-      height: 100%;
       flex-direction: row;
     }
     .answer:not(:last-of-type) {
       margin-right: 1.5rem;
+    }
+
+    .question {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .question-header {
+      font-size: 1.875rem;
+      padding-top: 2rem;
     }
   }
 </style>

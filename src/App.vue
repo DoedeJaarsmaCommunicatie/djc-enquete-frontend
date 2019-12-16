@@ -1,5 +1,6 @@
 <template>
   <div id="app" v-if="$store.state.user">
+    <Header />
     <transition-group>
       <section v-if="!started" key="button">
         <button class="btn primary" @click="started = 'questions'">Beginnen</button>
@@ -15,10 +16,11 @@ import Questionnaire from '@/views/Questionnaire'
 import Thanks from '@/views/Thanks'
 import ky from 'ky'
 import { baseUri } from '@/config'
+import Header from './components/Header'
 
 export default {
   name: 'app',
-  components: { Thanks, Questionnaire },
+  components: { Header, Thanks, Questionnaire },
   data: () => ({
     started: 'questions'
   }),
