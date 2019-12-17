@@ -19,14 +19,11 @@
         </div>
       </div>
       <input type="submit" value="Opslaan en versturen" class="submit-button" v-if="!finished">
-
       <h2 v-if="finished">
         Bedankt voor het invullen van de vragen. Binnen een paar dagen ontvang je nieuwe inspiratie voor 2020!
       </h2>
       <img :src="tyImg" alt="Bedankt voor het invullen." v-if="finished" />
-      <h2 v-if="error">
-        Er is een probleem, zijn alle velden goed ingevuld?
-      </h2>
+      <h2 v-if="error">Er is een probleem, zijn alle velden goed ingevuld?</h2>
     </form>
   </main>
 </template>
@@ -91,7 +88,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  h2 { font-size: 1.7rem; margin-bottom: 1.5rem; margin-top: 112px; }
+  h2 { font-size: 1.3rem; margin-bottom: 1.5rem; margin-top: 112px; }
   p { margin-bottom: 1rem; }
   #main { overflow: scroll; }
 </style>

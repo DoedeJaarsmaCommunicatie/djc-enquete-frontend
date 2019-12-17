@@ -11,7 +11,26 @@
     <noscript>
       <strong>We're sorry but Smaaktest - Doede Jaarsma communicatie doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+
+    <div id="isIE" style="display: none"><strong>Deze test werkt niet in MS Internet Explorer of MS Edge</strong></div>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script>
+    function isIE() {
+          var ua = window.navigator.userAgent;
+          var msie = ua.indexOf('MSIE ');
+          var trident = ua.indexOf('Trident/')
+          var edge = ua.indexOf('Edge/')
+
+          return msie > 0 || trident > 0 || edge > 0;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      if (isIE()) {
+        document.getElementById('isIE').style.display = 'block';
+      }
+    })
+    </script>
   </body>
+
 </html>
