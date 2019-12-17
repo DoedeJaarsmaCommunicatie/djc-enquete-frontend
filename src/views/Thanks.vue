@@ -1,32 +1,34 @@
 <template>
-  <form class="form container mx-auto" @submit.prevent="store">
-    <h2>Bedankt voor het invullen van je smaakprofiel</h2>
-    <p>
-      Check nog even de gegevens waar we de attentie naartoe kunnen sturen. Kloppen de gegevens niet? Pas het dan gerust even aan.
-    </p>
-    <div class="inputs">
-      <div class="form-group" v-for="field in fields" :key="field.name">
-        <label :for="field.name" class="sr-only">{{ field.label }}</label>
-        <input :name="field.name"
-               :class="field.class"
-               :id="field.name"
-               :type="field.type"
-               v-model="field.value"
-               :placeholder="field.label"
-               required
-        />
+  <main id="main">
+    <form class="form container mx-auto" @submit.prevent="store">
+      <h2 v-if="!finished">Bedankt voor het invullen van je smaakprofiel</h2>
+      <p v-if="!finished">
+        Check nog even de gegevens waar we de attentie naartoe kunnen sturen. Kloppen de gegevens niet? Pas het dan gerust even aan.
+      </p>
+      <div class="inputs" v-if="!finished">
+        <div class="form-group" v-for="field in fields" :key="field.name">
+          <label :for="field.name" class="sr-only">{{ field.label }}</label>
+          <input :name="field.name"
+                 :class="field.class"
+                 :id="field.name"
+                 :type="field.type"
+                 v-model="field.value"
+                 :placeholder="field.label"
+                 required
+          />
+        </div>
       </div>
-    </div>
-    <input type="submit" value="Opslaan en versturen" class="submit-button">
+      <input type="submit" value="Opslaan en versturen" class="submit-button" v-if="!finished">
 
-    <h2 v-if="finished">
-      Bedankt voor het invullen van de vragen. Binnen een paar dagen ontvang je nieuwe inspiratie voor 2020!
-    </h2>
-    <img :src="tyImg" alt="Bedankt voor het invullen." v-if="finished" />
-    <h2 v-if="error">
-      Er is een probleem, zijn alle velden goed ingevuld?
-    </h2>
-  </form>
+      <h2 v-if="finished">
+        Bedankt voor het invullen van de vragen. Binnen een paar dagen ontvang je nieuwe inspiratie voor 2020!
+      </h2>
+      <img :src="tyImg" alt="Bedankt voor het invullen." v-if="finished" />
+      <h2 v-if="error">
+        Er is een probleem, zijn alle velden goed ingevuld?
+      </h2>
+    </form>
+  </main>
 </template>
 
 <script>
@@ -89,6 +91,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  h2 { font-size: 1.7rem; margin-bottom: 1.5rem; }
+  h2 { font-size: 1.7rem; margin-bottom: 1.5rem; margin-top: 112px; }
   p { margin-bottom: 1rem; }
+  #main { overflow: scroll; }
 </style>

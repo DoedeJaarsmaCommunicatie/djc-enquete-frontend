@@ -29,16 +29,32 @@
 @media screen and (max-width: 768px)
   .answer
     margin-bottom: 1.5rem
+
   .answer-image
     height: unset
 
-  .answer-title
-    position: absolute
-    bottom: 0
-    left: 0
-    width: 100%
-    background: scale-color(#ffffff, $alpha: -20%)
+  //.answer-title
+  //  position: absolute
+  //  bottom: 0
+  //  left: 0
+  //  width: 100%
+  //  background: scale-color(#ffffff, $alpha: -20%)
 
 @media screen and (max-width: 1600px)
   .answer-image
-    height: unset
+    height: 100px
+    width: auto
+
+  .chosen
+    display: none
+
+  .answer
+    display: flex
+    flex: 1 1 auto
+    width: 100%
+    padding: 0 1rem
+
+  .answer-title
+    font-size: 1.5rem
+    margin: auto 0 auto 0.5rem
+

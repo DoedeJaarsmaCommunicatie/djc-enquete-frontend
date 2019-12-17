@@ -2,7 +2,7 @@
   <main id="main">
     <section v-for="(question, key) in questions"
              :key="question.id"
-             style="height: 100%;"
+             style="height: 100%; padding-bottom: 12rem"
              v-show="key === steps.current">
       <Question :question="question" @picked="answerChosen" />
     </section>

@@ -1,9 +1,11 @@
 <template>
+  <div id="snow">
     <header class="header">
       <figure>
         <img :src="logo" class="logo" alt="Doede Jaarsma communicatie" @click="reload" />
       </figure>
     </header>
+  </div>
 </template>
 
 <script>
@@ -29,10 +31,13 @@ export default {
 
 @media screen and (max-width: 769px)
   .header
+    @apply bg-primary-500
     position: fixed
     top: 0
     left: 0
     right: 0
     z-index: 9999399
-    background: #fff
+
+  .logo
+    height: 60px
 </style>

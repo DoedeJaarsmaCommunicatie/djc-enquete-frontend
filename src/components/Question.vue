@@ -73,7 +73,8 @@ export default {
 
 <style lang="scss">
   .question {
-    height: calc(100% - 112px);
+    /*height: calc(100% - 9rem);*/
+    height: 100%;
     margin-top: 112px;
 
     @media screen and (max-width: 768px) {
@@ -85,6 +86,7 @@ export default {
     padding: 1.5rem;
     text-align: center;
     font-size: 1.5rem;
+    font-weight: bold
   }
 
   .answers {

@@ -1,13 +1,13 @@
 <template>
   <div id="app" v-if="$store.state.user">
-    <Header />
-    <transition-group>
-      <section v-if="!started" key="button">
-        <button class="btn primary" @click="started = 'questions'">Beginnen</button>
-      </section>
-      <section v-else-if="started === 'questions'" key="questionnaire"><Questionnaire @finished="started = 'thanks'" /></section>
-      <section v-else key="thanks"><Thanks /></section>
-    </transition-group>
+      <Header />
+      <transition-group>
+        <section v-if="!started" key="button">
+          <button class="btn primary" @click="started = 'questions'">Beginnen</button>
+        </section>
+        <section v-else-if="started === 'questions'" key="questionnaire"><Questionnaire @finished="started = 'thanks'" /></section>
+        <section v-else key="thanks"><Thanks /></section>
+      </transition-group>
   </div>
 </template>
 
@@ -25,10 +25,15 @@ export default {
     started: 'questions'
   }),
   async mounted () {
-    const id = new URLSearchParams(window.location.search).get('gebruiker')
-    if (id) {
-      const user = await ky.get(`${baseUri}/user/${id}`).json()
-      this.$store.commit('login', { user })
+    this.getUser()
+  },
+  methods: {
+    async getUser () {
+      const id = new URLSearchParams(window.location.search).get('gebruiker')
+      if (id) {
+        const user = await ky.get(`${baseUri}/user/${id}`).json()
+        this.$store.commit('login', { user })
+      }
     }
   }
 }
